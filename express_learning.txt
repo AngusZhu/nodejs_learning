@@ -1,5 +1,0 @@
-1.npm install express #install in local
-  npm install express -g # install in global
-
-// install lib located in /usr/local
-
