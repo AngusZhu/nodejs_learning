@@ -13,8 +13,8 @@ http.createServer(function(req,resp){
 			console.log(err.statck);
 			resp.writeHead(404,{'content-type':'text/html'});
 		}else{
-
-			resp.writeHead(200,{'content-type':'text/html'});
+			
+			resp.writeHead(200,{'content-type':'text/json'});
 			resp.write(data.toString());
 		}
 		resp.end();

@@ -3,19 +3,23 @@ var http = require('http');
 var options = {
 	host: 'localhost',
 	port: 8888,
-	path: '/index.html'
+	//path: '/index.html'
+	path: '/hello.json'
 };
-var callback = function (err,response){
-	if(err){
-		console.log(err.stack);
-	}
+var callback = function( response){
 	var body = '';
 	response.on('data',function(data){
 		body +=data;
+
+		if(data.name){
+			console.log('data.name',data.name);
+		}
 	});	
 
 	response.on('end',function(){
 		console.log(body);
+		var obj	= JSON.parse(body);
+		console.log('obj.name',obj.name);
 	});
 
 }
