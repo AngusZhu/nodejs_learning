@@ -1,17 +1,25 @@
-var net = require('net');
-var client = net.connect({port:8888},function(){
-	console.log('connected to server ');
+var http = require('http');
 
+var options = {
+	host: 'localhost',
+	port: 8888,
+	path: '/index.html'
+};
+var callback = function (err,response){
+	if(err){
+		console.log(err.stack);
+	}
+	var body = '';
+	response.on('data',function(data){
+		body +=data;
+	});	
 
-});
+	response.on('end',function(){
+		console.log(body);
+	});
 
-client.on('data',function(data){
+}
 
-	console.log(data.toString());
-	client.end();
-});
+var req = http.request(options,callback);
+req.end();
 
-client.on('end',function(){
-	console.log(' disconnect to server ');
-
-});
